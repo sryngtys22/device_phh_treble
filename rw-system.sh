@@ -380,11 +380,6 @@ mkdir -p /mnt/phh/
 mount -t tmpfs -o rw,nodev,relatime,mode=755,gid=0 none /mnt/phh || true
 mkdir /mnt/phh/empty_dir
 touch /mnt/phh/empty
-touch /mnt/phh/unreadable
-chmod 0 /mnt/phh/unreadableAdd commentMore actions
-if [ "$vndk" -le 29 ]; then
-    mount /mnt/phh/unreadable /vendor/etc/seccomp_policy/configstore@1.1.policy
-fi
 fixSPL
 
 changeKeylayout
