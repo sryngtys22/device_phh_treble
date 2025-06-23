@@ -1,9 +1,9 @@
-$(call inherit-product, vendor/lineage/config/common.mk)
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-$(call inherit-product, vendor/lineage/config/BoardConfigSoong.mk)
-$(call inherit-product, vendor/lineage/config/BoardConfigLineage.mk)
-$(call inherit-product, device/lineage/sepolicy/common/sepolicy.mk)
--include vendor/lineage/build/core/config.mk
+$(call inherit-product, vendor/droidx/config/common.mk)
+$(call inherit-product, vendor/droidx/config/common_full_phone.mk)
+$(call inherit-product, vendor/droidx/config/BoardConfigSoong.mk)
+$(call inherit-product, vendor/droidx/config/BoardConfigDroidX.mk)
+$(call inherit-product, device/droidx/sepolicy/common/sepolicy.mk)
+-include vendor/droidx/build/core/config.mk
 
 TARGET_NO_KERNEL_OVERRIDE := true
 TARGET_NO_KERNEL_IMAGE := true
