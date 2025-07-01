@@ -19,5 +19,5 @@ PRODUCT_MAKEFILES := \
 	$(LOCAL_DIR)/matrixx_gsi_gapps.mk \
 	$(LOCAL_DIR)/voltage_gsi.mk \
 	$(LOCAL_DIR)/lessaosp_gsi.mk \
-
+	$(LOCAL_DIR)/aosp_gsi.mk \
 
