@@ -106,6 +106,9 @@ on property:persist.sys.phh.ims.floss=true
 on property:persist.sys.phh.enable_sf_gl_backpressure=*
     setprop debug.sf.enable_gl_backpressure ${persist.sys.phh.enable_sf_gl_backpressure}
 
+on property:persist.sys.phh.enable_sf_hwc_backpressure=*
+    setprop debug.sf.enable_hwc_backpressure ${persist.sys.phh.enable_sf_hwc_backpressure}
+
 on property:persist.sys.phh.dynamic_fps=*
     setprop ro.surface_flinger.use_content_detection_for_refresh_rate ${persist.sys.phh.dynamic_fps}
 

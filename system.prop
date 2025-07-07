@@ -15,6 +15,10 @@ ro.boot.realme.lockstate=0
 #Fixes fingerprint unlock delay
 persist.wm.enable_remote_keyguard_animation=0
 
+
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+ro.surface_flinger.use_content_detection_for_refresh_rate=true
+
 # Enable support of one-handed mode
 ro.support_one_handed_mode=true
 
