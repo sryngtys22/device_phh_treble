@@ -17,9 +17,6 @@
 -->
 <resources>
     <!-- Fix for the qs glitch on displays under sw372dp -->
-    <dimen name="status_bar_padding_end">3.0dp</dimen>
-    <dimen name="status_bar_padding_start">3.0dp</dimen>
-    <dimen name="status_bar_padding_top">5.0dp</dimen>
     <dimen name="qs_icon_size">18.849976dip</dimen>
     <dimen name="qs_icon_size_x">18.849976dip</dimen>
     <dimen name="qs_corner_radius">56.0dip</dimen>

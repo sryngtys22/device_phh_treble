@@ -245,8 +245,8 @@ if [ "$1" == "persist.sys.phh.disable_soundvolume_effect" ];then
     fi
 
     if [[ "$prop_value" == 1 ]];then
-        mount /mnt/phh/empty /vendor/lib/soundfx/libvolumelistener.so
-        mount /mnt/phh/empty /vendor/lib64/soundfx/libvolumelistener.so
+        mount /system/phh/empty /vendor/lib/soundfx/libvolumelistener.so
+        mount /system/phh/empty /vendor/lib64/soundfx/libvolumelistener.so
     else
         umount /vendor/lib/soundfx/libvolumelistener.so
         umount /vendor/lib64/soundfx/libvolumelistener.so
@@ -274,10 +274,91 @@ if [ "$1" == "persist.bluetooth.system_audio_hal.enabled" ]; then
         setprop persist.bluetooth.a2dp_offload.disabled true
         resetprop_phh ro.bluetooth.a2dp_offload.supported false
     else
-        resetprop_phh --delete persist.bluetooth.bluetooth_audio_hal.disabled
-        resetprop_phh --delete persist.bluetooth.a2dp_offload.disabled
-        resetprop_phh --delete ro.bluetooth.a2dp_offload.supported
+        resetprop_phh -p --delete persist.bluetooth.bluetooth_audio_hal.disabled
+        resetprop_phh -p --delete persist.bluetooth.a2dp_offload.disabled
+        resetprop_phh ro.bluetooth.a2dp_offload.supported
     fi
     restartAudio
+    exit
+fi
+
+if [ "$1" == "persist.sys.phh.two_pane_layout" ];then
+    if [[ "$prop_value" != "false" && "$prop_value" != "true" ]]; then
+        exit 1
+    fi
+
+    if [[ "$prop_value" == false ]];then
+        mount /system/phh/empty /system/system_ext/framework/androidx.window.extensions.jar
+        mount /system/phh/empty /system/system_ext/framework/androidx.window.sidecar.jar
+        resetprop_phh persist.wm.extensions.enabled false
+        resetprop_phh persist.settings.large_screen_opt.enabled false
+    else
+        umount /system/system_ext/framework/androidx.window.extensions.jar
+        umount /system/system_ext/framework/androidx.window.sidecar.jar
+        resetprop_phh persist.wm.extensions.enabled true
+        resetprop_phh persist.settings.large_screen_opt.enabled true
+    fi
+    exit
+fi
+
+if [ "$1" == "persist.sys.phh.debuggable" ];then
+    if [[ "$prop_value" != "false" && "$prop_value" != "true" ]]; then
+        exit 1
+    fi
+
+    if [[ "$prop_value" == true ]];then
+        resetprop_phh ro.debuggable 1
+        resetprop_phh ro.adb.secure 0
+        resetprop_phh ro.secure 0
+        resetprop_phh ro.force.debuggable 1
+        settings put global adb_enabled 1
+    else
+        resetprop_phh ro.debuggable 0
+        resetprop_phh ro.adb.secure 1
+        resetprop_phh ro.secure 1
+        resetprop_phh ro.force.debuggable 0
+        settings put global adb_enabled 0
+        setprop ctl.stop adbd
+    fi
+    exit
+fi
+
+if [ "$1" == "persist.sys.phh.sim_count" ];then
+    if [[ "$prop_value" != "reset" && "$prop_value" != "dsds" && "$prop_value" != "dsda" && "$prop_value" != "tsts" ]]; then
+        exit 1
+    fi
+
+    if [[ "$prop_value" == reset ]];then
+        resetprop_phh -p --delete persist.radio.multisim.config
+        resetprop_phh -p --delete persist.vendor.radio.multisim.config
+    fi
+
+    if [[ "$prop_value" == dsds ]];then
+        resetprop_phh persist.radio.multisim.config dsds
+        resetprop_phh persist.vendor.radio.multisim.config dsds
+    fi
+
+    if [[ "$prop_value" == dsda ]];then
+        resetprop_phh persist.radio.multisim.config dsda
+        resetprop_phh persist.vendor.radio.multisim.config dsda
+    fi
+
+    if [[ "$prop_value" == tsts ]];then
+        resetprop_phh persist.radio.multisim.config tsts
+        resetprop_phh persist.vendor.radio.multisim.config tsts
+    fi
+    exit
+fi
+
+if [ "$1" == "persist.sys.phh.restricted_networking" ];then
+    if [[ "$prop_value" != "0" && "$prop_value" != "1" ]]; then
+        exit 1
+    fi
+
+    if [[ "$prop_value" == 0 ]];then
+        settings put global restricted_networking_mode 0
+    else
+        settings put global restricted_networking_mode 1
+    fi
     exit
 fi
