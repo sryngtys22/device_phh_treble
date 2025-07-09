@@ -785,69 +785,62 @@ copyprop() {
         resetprop_phh "$1" "$(getprop "$2")"
     fi
 }
-# API 27
-copyprop ro.product.brand ro.vendor.product.brand
-copyprop ro.product.system.brand ro.vendor.product.brand
-copyprop ro.product.product.brand ro.vendor.product.brand
-copyprop ro.product.system_ext.brand ro.vendor.product.brand
-copyprop ro.product.product.device ro.vendor.product.device
-copyprop ro.product.system.device ro.vendor.product.device
-copyprop ro.product.system_ext.device ro.vendor.product.device
-copyprop ro.product.device ro.vendor.product.device
-copyprop ro.product.manufacturer ro.vendor.product.manufacturer
-copyprop ro.product.system.manufacturer ro.vendor.product.manufacturer
-copyprop ro.product.product.manufacturer ro.vendor.product.manufacturer
-copyprop ro.product.system_ext.manufacturer ro.vendor.product.manufacturer
-copyprop ro.build.product ro.vendor.product.model
-copyprop ro.product.model ro.vendor.product.model
-copyprop ro.product.system.model ro.vendor.product.model
-copyprop ro.product.product.model ro.vendor.product.model
-copyprop ro.product.system_ext.model ro.vendor.product.model
-copyprop ro.product.name ro.vendor.product.name
-copyprop ro.product.system.name ro.vendor.product.name
-copyprop ro.product.product.name ro.vendor.product.name
-copyprop ro.product.system_ext.name ro.vendor.product.name
 
-# API28+
-copyprop ro.product.brand ro.product.vendor.brand
-copyprop ro.product.system.brand ro.product.vendor.brand
-copyprop ro.product.product.brand ro.product.vendor.brand
-copyprop ro.product.system_ext.brand ro.product.vendor.brand
-copyprop ro.product.device ro.product.vendor.device
-copyprop ro.product.system.device ro.product.vendor.device
-copyprop ro.product.product.device ro.product.vendor.device
-copyprop ro.product.system_ext.device ro.product.vendor.device
-copyprop ro.product.manufacturer ro.product.vendor.manufacturer
-copyprop ro.product.system.manufacturer ro.product.vendor.manufacturer
-copyprop ro.product.product.manufacturer ro.product.vendor.manufacturer
-copyprop ro.product.system_ext.manufacturer ro.product.vendor.manufacturer
-copyprop ro.build.product ro.product.vendor.model
-copyprop ro.product.model ro.product.vendor.model
-copyprop ro.product.system.model ro.product.vendor.model
-copyprop ro.product.product.model ro.product.vendor.model
-copyprop ro.product.system_ext.model ro.product.vendor.model
-copyprop ro.product.name ro.product.vendor.name
-copyprop ro.product.system.name ro.product.vendor.name
-copyprop ro.product.product.name ro.product.vendor.name
-copyprop ro.product.system_ext.name ro.product.vendor.name
-
-# FINGERPRINTS
-copyprop ro.build.fingerprint ro.vendor.build.fingerprint
-copyprop ro.bootimage.build.fingerprint ro.vendor.build.fingerprint
-copyprop ro.system.build.fingerprint ro.vendor.build.fingerprint
-copyprop ro.product.build.fingerprint ro.vendor.build.fingerprint
-copyprop ro.system_ext.build.fingerprint ro.vendor.build.fingerprint
-
-# COMMON
-resetprop_phh ro.build.tags release-keys
-resetprop_phh ro.boot.vbmeta.device_state locked
-resetprop_phh ro.boot.verifiedbootstate green
-resetprop_phh ro.boot.flash.locked 1
-resetprop_phh ro.boot.veritymode enforcing
-resetprop_phh ro.boot.warranty_bit 0
-resetprop_phh ro.warranty_bit 0
-resetprop_phh ro.build.type user
-resetprop_phh --delete ro.build.selinux
+if [ ! -f /metadata/securize_disable ]; then
+    copyprop ro.build.device ro.vendor.build.device
+    copyprop ro.system.build.fingerprint ro.vendor.build.fingerprint
+    copyprop ro.bootimage.build.fingerprint ro.vendor.build.fingerprint
+    copyprop ro.build.fingerprint ro.vendor.build.fingerprint
+    copyprop ro.system_ext.build.fingerprint ro.vendor.build.fingerprint
+    copyprop ro.product.build.fingerprint ro.vendor.build.fingerprint
+    copyprop ro.build.device ro.vendor.product.device
+    copyprop ro.product.system.device ro.vendor.product.device
+    copyprop ro.product.device ro.vendor.product.device
+    copyprop ro.product.system.device ro.product.vendor.device
+    copyprop ro.product.device ro.product.vendor.device
+    copyprop ro.product.system_ext.device ro.vendor.product.device
+    copyprop ro.product.product.device ro.vendor.product.device
+    copyprop ro.product.system_ext.device ro.product.vendor.device
+    copyprop ro.product.product.device ro.product.vendor.device
+    copyprop ro.product.system.name ro.vendor.product.name
+    copyprop ro.product.name ro.vendor.product.name
+    copyprop ro.product.system.name ro.product.vendor.name
+    copyprop ro.product.name ro.product.vendor.name
+    copyprop ro.product.system_ext.name ro.vendor.product.name
+    copyprop ro.product.product.name ro.vendor.product.name
+    copyprop ro.product.system_ext.name ro.product.vendor.name
+    copyprop ro.product.product.name ro.product.vendor.name
+    copyprop ro.system.product.brand ro.vendor.product.brand
+    copyprop ro.product.brand ro.vendor.product.brand
+    copyprop ro.product.system.brand ro.vendor.product.brand
+    copyprop ro.product.system_ext.brand ro.vendor.product.brand
+    copyprop ro.product.product.brand ro.product.vendor.brand
+    copyprop ro.system.product.brand ro.product.vendor.brand
+    copyprop ro.product.brand ro.product.vendor.brand
+    copyprop ro.product.system.brand ro.product.vendor.brand
+    copyprop ro.product.system_ext.brand ro.product.vendor.brand
+    copyprop ro.product.product.brand ro.product.vendor.brand
+    copyprop ro.product.system.model ro.vendor.product.model
+    copyprop ro.product.model ro.vendor.product.model
+    copyprop ro.product.system_ext.model ro.vendor.product.model
+    copyprop ro.product.product.model ro.vendor.product.model
+    copyprop ro.product.system.model ro.product.vendor.model
+    copyprop ro.product.model ro.product.vendor.model
+    copyprop ro.build.product ro.vendor.product.model
+    copyprop ro.build.product ro.product.vendor.model
+    copyprop ro.product.system_ext.model ro.product.vendor.model
+    copyprop ro.product.product.model ro.product.vendor.model
+    copyprop ro.system.product.manufacturer ro.vendor.product.manufacturer
+    copyprop ro.product.manufacturer ro.vendor.product.manufacturer
+    copyprop ro.product.system.manufacturer ro.vendor.product.manufacturer
+    copyprop ro.product.product.manufacturer ro.vendor.product.manufacturer
+    copyprop ro.product.system_ext.manufacturer ro.vendor.product.manufacturer
+    copyprop ro.system.product.manufacturer ro.product.vendor.manufacturer
+    copyprop ro.product.manufacturer ro.product.vendor.manufacturer
+    copyprop ro.product.system.manufacturer ro.product.vendor.manufacturer
+    copyprop ro.product.product.manufacturer ro.product.vendor.manufacturer
+    copyprop ro.product.system_ext.manufacturer ro.product.vendor.manufacturer
+fi
 
 for abi in "" 64;do
     f=/vendor/lib$abi/libstagefright_foundation.so

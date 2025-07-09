@@ -168,7 +168,6 @@ PRODUCT_PACKAGES += \
     resetprop_phh
 
 PRODUCT_COPY_FILES += \
-    device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
     device/phh/treble/files/ota.sh:system/bin/ota.sh \
 
 PRODUCT_COPY_FILES += \
@@ -257,7 +256,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     treble-overlay-samsung-hover-proximity \
     treble-overlay-samsung-physical-proximity \
-    treble-overlay-samsung-touch-proximity
+    treble-overlay-samsung-touch-proximity \
+    SimDualResCommon \
+    SimSingleResCommon 
 
 # Two-pane layout in Settings
 $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)

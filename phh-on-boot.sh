@@ -1,5 +1,38 @@
 #!/system/bin/sh
 
+# spoof post-boot props
+# should be applied after boot complete to prevent breaking device features
+if [ ! -f /metadata/securize_disable ]; then
+  resetprop_phh ro.build.user papacu
+  resetprop_phh ro.build.host papacu
+  resetprop_phh ro.build.tags release-keys
+  resetprop_phh ro.product.build.tags release-keys
+  resetprop_phh ro.system.build.tags release-keys
+  resetprop_phh ro.system_ext.build.tags release-keys
+  resetprop_phh ro.vendor.build.tags release-keys
+  resetprop_phh ro.boot.vbmeta.device_state locked
+  resetprop_phh vendor.boot.vbmeta.device_state locked
+  resetprop_phh ro.boot.verifiedbootstate green
+  resetprop_phh vendor.boot.verifiedbootstate green
+  resetprop_phh ro.boot.flash.locked 1
+  resetprop_phh ro.boot.veritymode enforcing
+  resetprop_phh ro.boot.warranty_bit 0
+  resetprop_phh ro.vendor.warranty_bit 0
+  resetprop_phh ro.warranty_bit 0
+  resetprop_phh ro.debuggable 0
+  resetprop_phh ro.secure 1
+  resetprop_phh ro.build.type user
+  resetprop_phh ro.product.build.type user
+  resetprop_phh ro.system.build.type user
+  resetprop_phh ro.system_ext.build.type user
+  resetprop_phh ro.vendor.build.type user
+  resetprop_phh --delete ro.build.selinux
+  resetprop_phh ro.adb.secure 1
+  resetprop_phh -n sys.oem_unlock_allowed 0
+  resetprop_phh -n init.svc.flash_recovery stopped
+fi
+
+
 vndk="$(getprop persist.sys.vndk)"
 [ -z "$vndk" ] && vndk="$(getprop ro.vndk.version |grep -oE '^[0-9]+')"
 
