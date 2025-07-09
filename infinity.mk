@@ -25,4 +25,4 @@ TARGET_PRODUCT_PROP += device/phh/treble/product.prop
 
 INFINITY_MAINTAINER := Doze-off
 INFINITY_BUILD_TYPE := OFFICIAL
-WITH_GAPPS := true
+WITH_GAPPS := false
