@@ -257,6 +257,7 @@ PRODUCT_PACKAGES += \
     treble-overlay-samsung-hover-proximity \
     treble-overlay-samsung-physical-proximity \
     treble-overlay-samsung-touch-proximity \
+    NoServiceFix \
     SimDualResCommon \
     SimSingleResCommon 
 
