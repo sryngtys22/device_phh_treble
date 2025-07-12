@@ -50,5 +50,7 @@ bluetooth.profile.pan.panu.enabled?=true
 bluetooth.profile.pbap.server.enabled?=true
 bluetooth.profile.sap.server.enabled?=true
 
+ro.control_privapp_permissions=log
+
 # Samsung vendors default to a Samsung-specific gadget for MTP. Set this to use AOSP's functionfs MTP
 vendor.usb.use_ffs_mtp=1

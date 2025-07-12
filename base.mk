@@ -21,6 +21,7 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/phh/treble/sepolicy
 PRODUCT_PACKAGE_OVERLAYS += device/phh/treble/overlay
 
 $(call inherit-product, vendor/hardware_overlay/overlay.mk)
+$(call inherit-product, vendor/magisk/Android.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
@@ -33,7 +34,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
     ro.build.version.release=$(PLATFORM_VERSION) \
     ro.build.version.security_patch=$(PLATFORM_SECURITY_PATCH) \
-    ro.adb.secure=0 \
     ro.logd.auditd=true \
     ro.logd.kernel=true \
 
