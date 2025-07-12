@@ -257,8 +257,8 @@ if [ "$1" == "persist.sys.phh.disable_soundvolume_effect" ];then
     fi
 
     if [[ "$prop_value" == 1 ]];then
-        mount /system/phh/empty /vendor/lib/soundfx/libvolumelistener.so
-        mount /system/phh/empty /vendor/lib64/soundfx/libvolumelistener.so
+        mount /mnt/phh/empty /vendor/lib/soundfx/libvolumelistener.so
+        mount /mnt/phh/empty /vendor/lib64/soundfx/libvolumelistener.so
     else
         umount /vendor/lib/soundfx/libvolumelistener.so
         umount /vendor/lib64/soundfx/libvolumelistener.so
@@ -286,9 +286,9 @@ if [ "$1" == "persist.bluetooth.system_audio_hal.enabled" ]; then
         setprop persist.bluetooth.a2dp_offload.disabled true
         resetprop_phh ro.bluetooth.a2dp_offload.supported false
     else
-        resetprop_phh -p --delete persist.bluetooth.bluetooth_audio_hal.disabled
-        resetprop_phh -p --delete persist.bluetooth.a2dp_offload.disabled
-        resetprop_phh ro.bluetooth.a2dp_offload.supported
+        resetprop_phh --delete persist.bluetooth.bluetooth_audio_hal.disabled
+        resetprop_phh --delete persist.bluetooth.a2dp_offload.disabled
+        resetprop_phh --delete ro.bluetooth.a2dp_offload.supported
     fi
     restartAudio
     exit

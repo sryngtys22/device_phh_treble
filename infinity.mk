@@ -5,25 +5,20 @@ $(call inherit-product, vendor/infinity/config/BoardConfigInfinity.mk)
 $(call inherit-product, device/lineage/sepolicy/common/sepolicy.mk)
 -include vendor/infinity/build/core/config.mk
 
-TARGET_NO_KERNEL_OVERRIDE := true
-TARGET_NO_KERNEL_IMAGE := true
-
+# Kernel
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
-LOCAL_UNINSTALLABLE_MODULE := true
+TARGET_NO_KERNEL_IMAGE := true
+TARGET_NO_KERNEL_OVERRIDE := true
 
+# SELinux
 SELINUX_IGNORE_NEVERALLOWS := true
+TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
 
-
-override BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
-
-TARGET_BOOT_ANIMATION_RES := 720
-TARGET_SCREEN_WIDTH := 720
-TARGET_SUPPORTS_BLUR := true
-USE_MOTO_CALCULATOR := true
-
+# Product
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+PRODUCT_CHARACTERISTICS := device
 TARGET_PRODUCT_PROP += device/phh/treble/product.prop
 
-INFINITY_MAINTAINER := Doze-off
-INFINITY_BUILD_TYPE := OFFICIAL
-WITH_GAPPS := false
+
+
+PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
